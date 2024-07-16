@@ -24,7 +24,7 @@ const Navbar = () => {
     
       const handleCloseClick = (event) => {
         event.preventDefault();
-        setLoginType(null);
+        setLoginType();
       };
     
 

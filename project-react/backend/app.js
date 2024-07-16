@@ -2,10 +2,11 @@ const express = require("express");
 const { mongoose } = require("mongoose");
 const app = express();
 const cors = require("cors");
-// const routes = require("./routes/routes");
+const routes = require("./routes/adminroutes");
+const emproutes = require("./routes/employerRoutes");
 const cookieParser = require("cookie-parser");
 
-// const authRoute=require('./routes/auth')
+const authRoute=require('./routes/candidteAuth')
 
 
 app.use(cookieParser())
@@ -20,10 +21,11 @@ app.use(
 
 
 
-// app.use("/", routes);
-// app.use("/",authRoute)
+app.use("/", routes);
+app.use("/",authRoute)
+app.use('/',emproutes)
 
-const PORT = 5000;
+const PORT = 5002;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

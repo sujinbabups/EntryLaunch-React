@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CandidteHome from './CandidteHome'
 import Candidateprofile from './Candidateprofile';
 import CandidateApplications from './CandidateApplications';
+import { useNavigate } from 'react-router-dom';
 
 
 const CandidateMaindiv = () => {
@@ -21,6 +22,25 @@ const CandidateMaindiv = () => {
     event.preventDefault();
     setActiveComponent('applications');
   }
+
+
+  const navigate=useNavigate()
+    const logout= async()=>{
+        try{
+        const res=await fetch('/api/logout')
+        if(res.ok){
+            toast.success('Logout success')
+            navigate('/')
+
+        }
+        }
+        catch(error)
+        {
+            toast.error('something went wrong')
+            // console.log('something went wrong');
+        }
+
+    }
     
   return (
    <>
@@ -45,7 +65,7 @@ const CandidateMaindiv = () => {
                 <input type="submit" value="My Applications" onClick={handleApplications}className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
             </a>
             <a href="/" className="block my-4">
-                <input type="submit" id="logoutButton" value="Logout" className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
+                <input type="submit" id="logoutButton" value="Logout" onClick={logout}  className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
             </a>
 
         </div>

@@ -7,6 +7,8 @@ import Contactus from './pages/Contactus'
 import Candidatelayout from './Layouts/Candidatelayout'
 import Employerlayout from './Layouts/Employerlayout'
 import Adminlayout from './Layouts/Adminlayout'
+import Candidatelogin from './components/Candidatelogin'
+import Candidateregister from './components/Candidateregister'
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
       </Route>
 
       <Route path='/candidate' element={<Candidatelayout/>}>
+      {/* <Route path='/login' element={<Candidatelogin/>}/> */}
+      {/* <Route path='/signup' element={<Candidateregister/>}/> */}
 
       </Route>
       <Route path='/employer' element={<Employerlayout/>}> 
