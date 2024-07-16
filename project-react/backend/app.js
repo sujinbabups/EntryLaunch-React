@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const routes = require("./routes/adminroutes");
 const emproutes = require("./routes/employerRoutes");
+const canRoutes=require('./routes/candidateroutes')
 const cookieParser = require("cookie-parser");
 
 const authRoute=require('./routes/candidteAuth')
@@ -23,7 +24,8 @@ app.use(
 
 app.use("/", routes);
 app.use("/",authRoute)
-app.use('/',emproutes)
+app.use('/',emproutes);
+app.use('/',canRoutes)
 
 const PORT = 5002;
 app.listen(PORT, () => {
