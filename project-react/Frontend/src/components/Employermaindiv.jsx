@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EmployerAddjob from './EmployerAddjob';
 import EmployerviewApplications from './EmployerviewApplications';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
+import EmployerviewJobs from './EmployerviewJobs';
 
 const Employermaindiv = () => {
     const [activeComponent, setActiveComponent] = useState('addjob');
+    const [employer, setEmployer] = useState({});
+
     const navigate=useNavigate();
     const handelAddjob = (event) => {
         event.preventDefault();
         setActiveComponent('addjob');
       };
+
+      const viewJobs = (event) => {
+        event.preventDefault();
+        setActiveComponent('viewjob');
+      };
+
       const handleApplication = (event) => {
         event.preventDefault();
         setActiveComponent('viewapplications');
@@ -32,6 +41,27 @@ const Employermaindiv = () => {
         }
 
     }
+    useEffect(() => {
+      const fetchEmployer = async () => {
+        try {
+          const response = await fetch('api/get-employer', {
+            method: 'GET',
+            credentials: 'include', // Include credentials in the request
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setEmployer(data);
+          } else {
+            console.error('Failed to fetch employer data', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+    
+      fetchEmployer();
+    }, []);
+    
   return (
    <>
     <div
@@ -39,24 +69,29 @@ const Employermaindiv = () => {
 
         <div
             className="dash bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg mt-[2%] ml-[10px] h-[500px]">
-            <h2 className="font-sans text-xl">Welcome <span>Co.name</span></h2>
+            <h2 className="font-sans text-2xl">Welcome <span className='text-3xl text-purple-900 font-bold animate-ping' >{employer.co_name}</span></h2>
             <hr className="my-4 border-t border-blue-500"/>
             <Link to="#adjob" className="block my-2">
                 <input type="submit" value="Add a Job" onClick={handelAddjob}
                     className="bg-purple-900 text-white py-2  rounded cursor-pointer w-[90%] mt-[50%] hover:bg-purple-600 transition ease-in-out delay-4s"/>
+            </Link>
+            <Link to="#" className="block my-2">
+                <input type="submit" value="View jobs" onClick={viewJobs}
+                    className="bg-purple-900 text-white py-2  rounded cursor-pointer w-[90%]  hover:bg-purple-600 transition ease-in-out delay-4s"/>
             </Link>
             <Link to="#vwapp" className="block my-2">
                 <input type="submit" value="View Applications" onClick={handleApplication}
                     className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s"/>
             </Link>
            
-            <Link to="" className="block my-2">
+            <Link to="#" className="block my-2">
               <input type="submit" value="Logout" onClick={logout}
                     className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s"/>
             </Link>
         </div>
-        {activeComponent === 'addjob' && <EmployerAddjob/>}
+        {activeComponent === 'addjob' && <EmployerAddjob company={employer} />}
         {activeComponent === 'viewapplications' && <EmployerviewApplications/>}
+        {activeComponent === 'viewjob' && <EmployerviewJobs company={employer}/>}
 
         </div>
 

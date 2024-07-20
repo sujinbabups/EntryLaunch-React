@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const EmployerAddjob = () => {
+const EmployerAddjob = ({company}) => {
     const [job_id, setJobid] = useState("");
     const [job_name, setJobname] = useState("");
     const [location, setLocation] = useState("");
@@ -37,6 +37,7 @@ const EmployerAddjob = () => {
             location,
             skills,
             description,
+            postedBy:company.email,
           
         
         };
@@ -49,7 +50,7 @@ const EmployerAddjob = () => {
    <>
    <div className=" w-[77%] h-[500px] mt-[2%] ml-[2%] rounded-2xl bg-gradient-to-r from-blue-700 to-blue-300"
             id="adjob">
-            <h2 className="font-sans text-3xl mt-6 font-bold text-white ">Hy <span>Co.name</span></h2>
+            <h2 className="font-sans text-3xl mt-6 font-bold text-white ">Hy <span className=''>{company.co_name} </span></h2>
             <h2 className="font-sans text-2xl mt-4 font-bold text-purple-800 ">Add a Job</h2>
             <form onSubmit={submitForm}>
             <table className="bg-purple-400 min-w-full mb-4 shadow-md rounded-lg text-xl font-bold">

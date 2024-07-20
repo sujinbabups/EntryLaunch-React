@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import CandidteHome from './CandidteHome'
 import Candidateprofile from './Candidateprofile';
 import CandidateApplications from './CandidateApplications';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const CandidateMaindiv = () => {
-    const [activeComponent, setActiveComponent] = useState('home');
+    const [activeComponent, setActiveComponent] = useState('profile');
 
   const handleHomeClick = (event) => {
     event.preventDefault();
@@ -22,54 +23,49 @@ const CandidateMaindiv = () => {
     event.preventDefault();
     setActiveComponent('applications');
   }
+  
 
 
-  const navigate=useNavigate()
-    const logout= async()=>{
-        try{
-        const res=await fetch('/api/logout')
-        if(res.ok){
-            toast.success('Logout success')
-            navigate('/')
-
-        }
-        }
-        catch(error)
-        {
-            toast.error('something went wrong')
-            // console.log('something went wrong');
-        }
+  const logout= async()=>{
+    try{
+    const res=await fetch('/api/logout')
+    if(res.ok){
+        toast.success('Logout success for candidate')
+        // navigate('/')
 
     }
+    }
+    catch(error)
+    {
+        toast.error('something went wrong')
+        // console.log('something went wrong');
+    }
+
+}
     
   return (
    <>
    
     <div className="maindiv h-[600px] w-[70%] bg-gray-300 mx-auto mt-28 rounded-lg flex ">
         <div className="dashb bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg ml-[3%] relative top-[5%] w-[25%] h-[540px] ">
-        <h3 className="text-xl font-semibold ml-[38%]">Name</h3>
-            <a href="#cnhome" className="block my-4">
-                <input type="submit" value="My Home" onClick={handleHomeClick} className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
-            </a>
-            <hr className="my-6 border-t border-blue-400"/>
-            <a href="#profile" className="block my-4">
+            {/* <h3 className="text-xl font-semibold ml-[38%]">Name</h3> */}
+            <Link to="#profile" className="block my-4">
                 <input type="submit" value="Profile" onClick={handleProfileClick} className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
-            </a>
-            {/* <!-- <a href="#srchdiv" className="block my-4">
-                <input type="submit" value="Search Jobs" className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600">
-            </a>
-            <a href="#svjob" className="block my-4">
-                <input type="submit" value="Saved Jobs" className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"> -->
-            </a> */}
-            <a href="#appli" className="block my-4">
+            </Link>
+            <hr className="my-6 border-t border-blue-400"/>
+           
+            <Link to="#cnhome" className="block my-4">
+                <input type="submit" value="My Home" onClick={handleHomeClick} className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
+            </Link>
+            <Link to="#appli" className="block my-4">
                 <input type="submit" value="My Applications" onClick={handleApplications}className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
-            </a>
-            <a href="/" className="block my-4">
+            </Link>
+            <Link to="/" className="block my-4">
                 <input type="submit" id="logoutButton" value="Logout" onClick={logout}  className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[65%] ml-[15%] hover:bg-purple-600"/>
-            </a>
+            </Link>
 
         </div>
-        {activeComponent === 'home' && <CandidteHome />}
+        {activeComponent === 'home' && <CandidteHome/>}
         {activeComponent === 'profile' && <Candidateprofile/>}
         {activeComponent === 'applications' && <CandidateApplications/>}
         

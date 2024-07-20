@@ -6,7 +6,12 @@ const demo=new Schema({
     lname:{type:String,required:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    userType:{type:String}
+    userType:{type:String},
+    dob:{type:Date},
+    course:{type:String},
+    passingyr:{type:String},
+    grade:{type:String},
+    appliedJobs: [{ type: Schema.Types.ObjectId, ref: 'job-list' }]
 
 
 })

@@ -25,7 +25,7 @@ router.post('/admin-login', async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.cookie('AdminAuthToken', token, { httpOnly: true, secure: false }); // Ensure secure is false for localhost
+        res.cookie('AdminAuthToken', token, { httpOnly: true, secure: false }); 
         res.status(200).json({ message: 'Login Success', token });
 
     } catch (error) {

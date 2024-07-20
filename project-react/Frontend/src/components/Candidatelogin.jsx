@@ -36,7 +36,7 @@ const Candidatelogin = ({ show, handleClose }) => {
       password,
     };
 
-    const res = await fetch("http://localhost:5002/login", {
+    const res = await fetch("api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

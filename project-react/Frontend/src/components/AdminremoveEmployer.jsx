@@ -55,7 +55,7 @@ const AdminremoveEmployer = () => {
         <h2 className="text-2xl font-sans mt-8 ml-10 text-white font-bold">Remove Employer</h2>
         <label htmlFor="selectEmp" className="font-sans text-white font-bold text-xl ml-6 relative top-[5%]">Select an employer :</label>
         <select name="selectEmp" id="selectEmp" onChange={handleEmployerSelect} className="border p-2 rounded relative top-[5%] w-[15%]">
-          <option value="" disabled defaultValue>----</option>
+          <option value="" disabled selected >----</option>
           {employers.map((employer) => (
             <option key={employer.Emp_Id} value={employer.Emp_Id}>{employer.Emp_Id}</option>
           ))}
