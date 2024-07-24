@@ -37,9 +37,9 @@ const Navbar = () => {
         </div>
         <div className="flex space-x-16 relative left-[-20px] ">
             <ul className="flex space-x-16 cursor-pointer">
-                <li><Link to ="/" className="text-lg hover:text-white transition duration-1000">Home</Link></li>
-                <li><Link to ="/recruiters" className="text-lg hover:text-white transition duration-1000">Recruiters</Link></li>
-                <li><Link to ="/contact" className="text-lg hover:text-white transition duration-1000">Contact</Link></li>
+                <li><Link to ="/" className="text-xl text-blue-900 font-bold hover:text-white transition duration-500 ">Home</Link></li>
+                <li><Link to ="/recruiters" className="text-xl  text-blue-900 font-bold hover:text-white transition duration-500">Recruiters</Link></li>
+                <li><Link to ="/contact" className="text-xl  text-blue-900 font-bold hover:text-white transition duration-500">Contact</Link></li>
             </ul>
         </div>
         <div className="relative right-20">

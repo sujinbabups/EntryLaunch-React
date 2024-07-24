@@ -59,7 +59,7 @@ const Candidateregister = ({ show, handleClose }) => {
     <>
   
    
-    <div id="canReg" className="fixed top-[200px] right-[10px] bg-white w-[460px] p-6 rounded-lg shadow-lg">
+    <div id="canReg" className="fixed top-[190px] right-[10px] bg-white w-[22%] p-6 rounded-lg shadow-lg">
         <Link to  ="#" className="float-right text-4xl mb-4" onClick={handleClose}>&times;</Link>
         <h2 className="text-2xl font-medium mb-4">Candidate Registration</h2>
         <span className="block text-right mb-4">Already Registered? <a href="#logDiv" onClick={handleCandidateClick} className="text-blue-600 font-bold">Login</a></span>

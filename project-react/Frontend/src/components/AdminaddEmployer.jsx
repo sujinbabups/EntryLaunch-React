@@ -65,6 +65,7 @@ const AdminaddEmployer = () => {
                         <th className="bg-purple-900 text-white h-12 p-2">Type of Co.</th>
                         <th className="bg-purple-900 text-white h-12 p-2">Email</th>
                         <th className="bg-purple-900 text-white h-12 p-2">Password</th>
+                        
                     </tr>
                 </thead>
                 <tbody>

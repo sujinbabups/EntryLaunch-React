@@ -71,7 +71,7 @@ const Employermaindiv = () => {
             className="dash bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg mt-[2%] ml-[10px] h-[500px]">
             <h2 className="font-sans text-2xl">Welcome <span className='text-3xl text-purple-900 font-bold animate-ping' >{employer.co_name}</span></h2>
             <hr className="my-4 border-t border-blue-500"/>
-            <Link to="#adjob" className="block my-2">
+            <Link to="#adjob" className="block mt-[-75px] ">
                 <input type="submit" value="Add a Job" onClick={handelAddjob}
                     className="bg-purple-900 text-white py-2  rounded cursor-pointer w-[90%] mt-[50%] hover:bg-purple-600 transition ease-in-out delay-4s"/>
             </Link>

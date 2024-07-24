@@ -7,7 +7,7 @@ const HeroCandidate = () => {
         <div className="ml-10">
             <h3 className="hdding float-left mt-[30px] text-5xl animate-pulse text-blue-200 font-bold">EntryLaunch</h3>
         </div>
-        <h2 className="text-5xl font-bold mt-6 text-white relative right-[140px]">Start Your <span className="text-blue-900"> Career</span> Journey <br/>With us</h2>
+        <h2 className="text-5xl font-bold mt-6 text-white relative right-[140px]">Start Your <span className="text-blue-900 animate-pulse "> Career</span> Journey <br/>With us</h2>
     </div>
   </>
   )

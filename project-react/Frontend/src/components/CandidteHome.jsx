@@ -62,7 +62,7 @@ const CandidteHome = () => {
   };
 
   const handleApply = (job) => {
-    window.confirm("want to apply")
+    if (window.confirm('Do you want to apply for this job?')) {
     const jobDetails = {
       job_id: job.job_id,
       job:job.job_name,
@@ -77,10 +77,11 @@ const CandidteHome = () => {
     };
 
     signupSubmit(jobDetails);
+  }
   };
 
   return (
-    <div className="canHome bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg relative top-[5%] ml-8 h-[540px] w-3/4 overflow-auto shadow-lg transform transition-all duration-500 ease-in-out">
+    <div className="canHome bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg relative top-[5%] ml-8 w-[65%] h-[540px]  overflow-auto shadow-lg transform transition-all duration-500 ease-in-out">
     <h2 className="text-3xl font-bold mb-6 animate-scroll ">
       Hi <span className="text-blue-900 text-4xl ">{user.fname}</span>
     </h2>

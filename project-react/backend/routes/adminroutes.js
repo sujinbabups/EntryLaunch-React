@@ -3,6 +3,8 @@ const router = express.Router();
 const adminCollection = require("../models/admin");
 const employerSchema=require('../models/employer')
 
+const appJobs=require('../models/appliedjobs')
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -44,23 +46,28 @@ router.get("/logout", (req, res) => {
 
 router.post('/add-employer', async (req, res) => {
     try {
-        const { Emp_Id, co_name, type, place, email,password } = req.body;
+        const { Emp_Id, co_name, type, place, email, password } = req.body;
+
+        // Hash the password
+        const saltRounds = 10; // You can adjust the number of salt rounds
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
         const new_emp = new employerSchema({
             Emp_Id,
             co_name,
             type,
             place,
             email,
-            password,
+            password: hashedPassword, // Save the hashed password
         });
+
         await new_emp.save();
         res.status(201).json({ message: "Added new employer" });
     } catch (error) {
         console.log(error);
-        // res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error" });
     }
 });
-
 // view employer
 
 router.get('/get-employers', async (req, res) => {
@@ -108,6 +115,19 @@ router.delete('/delete/:id', async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+
+// Getting the number of placement to the admin
+
+router.get('/get-applied-jobs', async (req, res) => {
+    try {
+      // Fetch applied jobs from the database
+      const appliedJobs = await appJobs.find();
+      res.status(200).json(appliedJobs);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
 
 
 

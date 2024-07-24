@@ -21,8 +21,10 @@ router.post('/employer-login', async (req, res) => {
         return res.status(400).json({ message: 'Invalid username or password' });
       }
   
-      if (password !== employer.password) {
-        return res.status(400).json({ message: 'Invalid username or password' });
+      const isMatch = await bcrypt.compare(password, employer.password);
+
+      if (!isMatch) {
+        return res.status(400).json({ message: 'Invalid email or password' });
       }
   
       const token = jwt.sign(
@@ -71,6 +73,18 @@ router.post('/add-job', async (req, res) => {
         console.error(error);
         res.status(500).json({ message: "Server error" });
     }
+});
+
+// Getting the employers details to home page
+
+router.get('/recruiters', async (req, res) => {
+  try {
+    const recruiters = await employerCollection.find();
+    res.json(recruiters);
+  } catch (error) {
+    console.error('Error fetching recruiters:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 router.get('/get-employer', authenticateToken, async (req, res) => {
