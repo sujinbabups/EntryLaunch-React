@@ -25,22 +25,22 @@ const Employermaindiv = () => {
         setActiveComponent('viewapplications');
       };
 
-      const logout= async()=>{
-        try{
-        const res=await fetch('api/logout')
-        if(res.ok){
-            toast.success('Logout success')
-            navigate('/')
+      const logout = async () => {
+        try {
+          const res = await fetch('/api/emplogout', { method: 'POST' });
+          if (res.ok) {
+            toast.success('Logout success');
+            navigate('/');
+          } else {
+            toast.error('Logout failed');
+          }
+        } catch (error) {
+          toast.error('Something went wrong');
+          console.error('Something went wrong:', error);
+        }
+      };
 
-        }
-        }
-        catch(error)
-        {
-            toast.error('something went wrong')
-            // console.log('something went wrong');
-        }
 
-    }
     useEffect(() => {
       const fetchEmployer = async () => {
         try {
@@ -84,9 +84,8 @@ const Employermaindiv = () => {
                     className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s"/>
             </Link>
            
-            <Link to="#" className="block my-2">
-              <input type="submit" value="Logout" onClick={logout}
-                    className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s"/>
+            <Link to ="/" className="block my-4">
+              <input type="submit" value="Logout" onClick={logout} className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s0" />
             </Link>
         </div>
         {activeComponent === 'addjob' && <EmployerAddjob company={employer} />}

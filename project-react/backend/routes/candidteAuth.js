@@ -9,21 +9,21 @@ const jwt = require("jsonwebtoken");
 
 // Registration route
 router.post('/can-reg', async (req, res) => {
-    try {
-        const { fname, lname, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new Candidate_Reg({
-            fname,
-            lname,
-            email,
-            password: hashedPassword,
-        });
-        await newUser.save();
-        res.status(201).json({ message: 'Registration successful' });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Server error' });
-    }
+  try {
+    const { fname, lname, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new Candidate_Reg({
+      fname,
+      lname,
+      email,
+      password: hashedPassword,
+    });
+    await newUser.save();
+    res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 // Login route
@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ error: "Authentication failed- User doesn't exists" });
+        .json({ error: "Authentication failed- User doesn't exist" });
     }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
@@ -57,9 +57,6 @@ router.post("/login", async (req, res) => {
     // Set the token in a cookie
     res.cookie('AuthToken', token, { httpOnly: true, secure: false });
 
-    // Set the email in a separate cookie
-    res.cookie('UserEmail', email, { httpOnly: true, secure: false });
-
     res.status(200).json({ message: 'Login Success', token });
 
   } catch (error) {
@@ -67,13 +64,9 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Login failed" });
   }
 });
-
 // Logout route
-router.post('/logout', (req, res) => {
-
+router.post('/canlogout', (req, res) => {
   res.clearCookie('AuthToken', { httpOnly: true, secure: false });
-  res.clearCookie('UserEmail', { httpOnly: true, secure: false });
-
   res.status(200).json({ message: 'Logout Success' });
 });
 

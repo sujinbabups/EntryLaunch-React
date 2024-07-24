@@ -62,14 +62,15 @@ const CandidteHome = () => {
   };
 
   const handleApply = (job) => {
+    window.confirm("want to apply")
     const jobDetails = {
       job_id: job.job_id,
       job:job.job_name,
       can_name: user.fname,
       email: user.email,
       course: user.course,
-      skills: job.skills,
-      location:job.location,
+      skills: user.skills,
+      place:user.place,
       description:job.description,
       postedBy:job.postedBy,
 
@@ -79,49 +80,50 @@ const CandidteHome = () => {
   };
 
   return (
-    <div className="canHome bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg relative top-[5%] ml-8 h-[540px] w-3/4" id="cnhome">
-      <h2 className="text-3xl font-bold mb-6">Hi <span className="text-blue-900" id="can-name">{user.fname}</span></h2>
-      <div className="bg-white h-[400px] w-[90%]">
-        <table className="w-[80%] text-black mx-auto relative top-[20%]">
-          <thead>
-            <tr className="bg-gray-600 border-blue-800 text-center h-10">
-              <th className="w-12">Id</th>
-              <th className="w-[25%]">Job</th>
-              <th>Location</th>
-              <th>Skills</th>
-              <th>Description</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jobs.map((job) => (
-              <tr key={job.job_id}>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.job_id}</td>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.job_name}</td>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.location}</td>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.skills}</td>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.description}</td>
-                <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">
-                  {appliedJobs.has(job.job_id) ? (
-                    <button className="bg-green-500 text-white font-bold py-2 px-4 rounded" disabled>
-                      Applied
-                    </button>
-                  ) : (
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleApply(job)}
-                    >
-                      Apply
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+    <div className="canHome bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg relative top-[5%] ml-8 h-[540px] w-3/4 overflow-auto shadow-lg transform transition-all duration-500 ease-in-out">
+    <h2 className="text-3xl font-bold mb-6 animate-scroll ">
+      Hi <span className="text-blue-900 text-4xl ">{user.fname}</span>
+    </h2>
+    <table className="w-[80%] text-black mx-auto relative animate-fadeIn">
+      <thead>
+        <tr className="bg-purple-600 border-blue-800 text-center h-10 ">
+          <th className="w-12 ">Id</th>
+          <th className="w-[25%] ">Job</th>
+          <th className="">Location</th>
+          <th className="">Skills</th>
+          <th className="">Last Date</th>
+          <th className="">Action</th>
+        </tr>
+      </thead>
+      <tbody className='bg-red-200'>
+        {jobs.map((job) => (
+          <tr key={job.job_id} className="hover:bg-gray-200 transform transition-all duration-300 ease-in-out">
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.job_id}</td>
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.job_name}</td>
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.location}</td>
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.skills}</td>
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.date}</td>
+            <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">
+              {appliedJobs.has(job.job_id) ? (
+                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded cursor-not-allowed animate-pulse">
+                  Applied
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform transition-all duration-300 ease-in-out hover:scale-105"
+                  onClick={() => handleApply(job)}
+                >
+                  Apply
+                </button>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>  );
+  
 };
+
 
 export default CandidteHome

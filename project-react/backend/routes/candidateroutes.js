@@ -42,6 +42,22 @@ router.get('/app-details', authenticateToken, async (req, res) => {
   }
 });
 
+// router.get('/job-details', authenticateToken, async (req, res) => {
+//   try {
+//     // Ensure you have the user email in the request object
+//     const email = req.user.userEmail;
+//     console.log(email);
+
+//     // Fetch jobs that match the logged-in user's email
+//     const jobs = await jobslist.find({ email:email });
+
+//     res.status(200).json(jobs);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// });
+
 
 
 // Apply job 
@@ -54,8 +70,8 @@ router.post('/apply-job', async (req, res) => {
       email: req.body.email,
       course: req.body.course,
       skills: req.body.skills,
-      location:req.body.location,
-      description:req.body.description,
+      place:req.body.place,
+    
       postedBy: req.body.postedBy,
        action: 'pending'
     });
@@ -72,7 +88,7 @@ router.post('/apply-job', async (req, res) => {
 
 router.put('/update-user', async (req, res) => {
     try {
-      const { email, dob, course, passingyr, grade } = req.body;
+      const { email, dob, course, passingyr, grade,skills,place } = req.body;
   
       // Find the user by ID and update their details
       const user = await Candidate_Reg.findOne({ email: email });
@@ -84,6 +100,8 @@ router.put('/update-user', async (req, res) => {
       user.course = course;
       user.passingyr = passingyr;
       user.grade = grade;
+      user.skills = skills;
+      user.place=place
   
       await user.save();
       res.status(200).json({ message: "User details updated successfully" });

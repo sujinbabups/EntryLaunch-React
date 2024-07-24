@@ -80,12 +80,12 @@ const EmployerviewApplications = () => {
   return (
     <div className="rounded-2xl bg-gradient-to-r from-blue-700 to-blue-300 w-[74%] ml-[5%] mt-[2%] h-[500px]" id="vwapp">
       <div>
-        <h2 className="font-sans text-3xl mt-6 ml-">View Applications</h2>
-        <label htmlFor="sel" className="font-sans text-xl font-bold mt-4">Select job Id :</label>
+        <h2 className="font-sans text-3xl mt-6 text-white">View Applications</h2>
+        <label htmlFor="sel" className="font-sans text-xl font-bold mt-4 text-white">Select job Id :</label>
         <select
           name="jId"
           id="sel"
-          className="border p-2 rounded ml-[20px]"
+          className="border p-2 rounded ml-[20px] bg-purple-300 "
           onChange={handleJobIdChange}
           value={selectedJobId}
         >
@@ -115,7 +115,7 @@ const EmployerviewApplications = () => {
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.can_name}</td>
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.email}</td>
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.course}</td>
-              <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.location}</td>
+              <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.place}</td>
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{application.skills}</td>
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">
                 <button

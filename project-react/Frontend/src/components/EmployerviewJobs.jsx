@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 
-const EmployerviewJobs = ({}) => {
+const EmployerviewJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [editJobId, setEditJobId] = useState(null);
   const [jobDetails, setJobDetails] = useState({
@@ -9,7 +9,7 @@ const EmployerviewJobs = ({}) => {
     job_name: '',
     location: '',
     skills: '',
-    description: ''
+    date: ''
   });
 
   useEffect(() => {
@@ -70,10 +70,11 @@ const EmployerviewJobs = ({}) => {
       <table className="w-[80%] text-black mx-auto relative top-[20%]">
         <thead>
           <tr className="bg-purple-500 border-blue-800 text-center text-white h-10">
+          <th className="">Job Id</th>
             <th className="w-[25%]">Job</th>
             <th>Location</th>
             <th>Skills</th>
-            <th>Description</th>
+            <th>Last Date</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -85,6 +86,19 @@ const EmployerviewJobs = ({}) => {
                   <input
                     type="text"
                     name="job_name"
+                    value={jobDetails.job_id}
+                    onChange={handleChange}
+                    className="border p-2 rounded w-full"
+                  />
+                ) : (
+                  job.job_id
+                )}
+              </td>
+              <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">
+                {editJobId === job.job_id ? (
+                  <input
+                    type="text"
+                    name="location"
                     value={jobDetails.job_name}
                     onChange={handleChange}
                     className="border p-2 rounded w-full"
@@ -123,13 +137,13 @@ const EmployerviewJobs = ({}) => {
                 {editJobId === job.job_id ? (
                   <input
                     type="text"
-                    name="description"
-                    value={jobDetails.description}
+                    name="date"
+                    value={jobDetails.date}
                     onChange={handleChange}
                     className="border p-2 rounded w-full"
                   />
                 ) : (
-                  job.description
+                  job.date
                 )}
               </td>
               <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">

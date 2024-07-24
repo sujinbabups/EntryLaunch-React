@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const employerCollection = require("../models/employer");
 const jobSchema = require("../models/joblist");
+const joblist=require('../models/joblist')
 const authenticateToken=require('../middleware/tokenAuth')
 const applyJob=require('../models/appliedjobs')
 
@@ -40,13 +41,18 @@ router.post('/employer-login', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   });
+
+  router.post('/emplogout', (req, res) => {
+    res.clearCookie('AuthToken', { httpOnly: true, secure: false });
+    res.status(200).json({ message: 'Logout Success' });
+  });
   
 
 // Adding a job by employer
 
 router.post('/add-job', async (req, res) => {
     try {
-        const { job_id, job_name, location, skills, description,postedBy } = req.body;
+        const { job_id, job_name, location, skills, date,postedBy } = req.body;
 
         // console.log(job_id);
         const new_job = new jobSchema({
@@ -54,7 +60,7 @@ router.post('/add-job', async (req, res) => {
             job_name,
             location,
             skills,
-            description,
+            date,
             postedBy,
         });
 
@@ -102,12 +108,12 @@ router.get('/get-employer', authenticateToken, async (req, res) => {
 
   // Update job details
   router.put('/update-job', authenticateToken, async (req, res) => {
-    const { job_id, job_name, location, skills, description } = req.body;
+    const { job_id, job_name, location, skills, date } = req.body;
   
     try {
       const job = await jobSchema.findOneAndUpdate(
         { job_id },
-        { job_name, location, skills, description },
+        { job_name, location, skills, date },
         { new: true }
       );
   
@@ -127,7 +133,7 @@ router.get('/get-employer', authenticateToken, async (req, res) => {
     try {
       const empEmail = req.user.email;
       console.log(empEmail);
-      const jobs = await applyJob.find({postedBy:empEmail }); // Adjust field name as necessary
+      const jobs = await joblist.find({postedBy:empEmail }); // Adjust field name as necessary
       console.log(jobs);
       const jobIds = jobs.map(job => job.job_id);
       res.status(200).json(jobIds);
@@ -137,7 +143,8 @@ router.get('/get-employer', authenticateToken, async (req, res) => {
     }
   });
 
-  
+  // get the candidate details
+
   router.get('/applications/:jobId', authenticateToken, async (req, res) => {
     try {
       const jobId = req.params.jobId;
@@ -169,10 +176,7 @@ router.get('/get-employer', authenticateToken, async (req, res) => {
     }
   });
 
-router.get("/logout", (req, res) => {
-    res.clearCookie("AuthToken");
-    res.status(200).send("Logout successful");
-});
+
 
 module.exports = router;
 

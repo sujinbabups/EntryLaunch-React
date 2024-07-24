@@ -9,6 +9,8 @@ const demo=new Schema({
     userType:{type:String},
     dob:{type:Date},
     course:{type:String},
+    skills:{type:String},
+    place:{type:String},
     passingyr:{type:String},
     grade:{type:String},
     appliedJobs: [{ type: Schema.Types.ObjectId, ref: 'job-list' }]
