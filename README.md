@@ -1,2 +1,3 @@
 # EntryLaunch-React
-Its a job board platform
+EntryLaunch is a Job Board Platform created using React
+This project is designed for  **freshers**.
