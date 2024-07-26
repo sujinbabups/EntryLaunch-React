@@ -48,9 +48,9 @@ const EmployerAddjob = ({company}) => {
   
   return (
    <>
-   <div className=" w-[77%] h-[500px] mt-[2%] ml-[2%] rounded-2xl bg-gradient-to-r from-blue-700 to-blue-300"
+   <div className=" w-[77%] h-[500px] mt-[2%] ml-[2%] rounded-2xl bg-gradient-to-r from-green-600 to-blue-400 border-2 border-white"
             id="adjob">
-            <h2 className="font-sans text-3xl mt-6 font-bold text-white ">Hy <span className='text-purple-800 anim '>{company.co_name} </span></h2>
+            <h2 className="font-sans text-3xl mt-6 font-bold text-white ">Hy <span className='text-purple-800  '>{company.co_name} </span></h2>
             <h2 className="font-sans text-2xl mt-4 font-bold text-purple-800 ">Add a Job</h2>
             <form onSubmit={submitForm}>
             <table className="bg-purple-400 min-w-full mb-4 shadow-md rounded-lg text-xl font-bold">

@@ -27,11 +27,11 @@ app.use("/",authRoute)
 app.use('/',emproutes);
 app.use('/',canRoutes)
 
-const PORT = 5002;
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-mongoose.connect("mongodb://localhost:27017/EntryLaunch-React");
+mongoose.connect("mongodb://mongodb:27017/EntryLaunch-React");
 
 const database = mongoose.connection;
 

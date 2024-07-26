@@ -19,12 +19,13 @@ function App() {
       <Route index element={<Homepage/>}/>
       <Route path='/recruiters' element={<Recruiters/>}/>
       <Route path='/contact' element={<Contactus/>}/>
+      {/* <Route path='/login' element={<Candidatelogin/>}/> */}
      
 
       </Route>
 
       <Route path='/candidate' element={<Candidatelayout/>}>
-      {/* <Route path='/login' element={<Candidatelogin/>}/> */}
+    
       {/* <Route path='/signup' element={<Candidateregister/>}/> */}
 
       </Route>

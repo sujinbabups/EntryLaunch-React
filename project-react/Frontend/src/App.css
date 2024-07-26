@@ -1,4 +1,35 @@
 
+/* Navbar heading style */
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+    color: rgb(220, 223, 233);
+  }
+  
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+    color: rgb(15, 15, 224);
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+    color: rgb(5, 180, 93);
+  }
+}
+
+.slide-in1 {
+  display: inline-block;
+  animation: slideIn 3s infinite;
+}
+
+
+
+
+
+
 /* css for home page div */
 
 .animated-gradient-text {
@@ -105,5 +136,39 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 
 }
+
+
+/* Style for login alert */
+@keyframes reduceSize {
+  0% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+.message-animation {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) scale(1.5);
+  background: linear-gradient(135deg, #1e8057, #9773d1);
+  color: white;
+  font-weight: bold;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  
+  padding: 2rem;
+  border-radius: 0.5rem;
+  z-index: 1000;
+  animation: reduceSize 3s forwards;
+}
+
 
 

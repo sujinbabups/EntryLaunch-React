@@ -52,7 +52,7 @@ router.post('/employer-login', async (req, res) => {
 
 // Adding a job by employer
 
-router.post('/add-job', async (req, res) => {
+router.post('/add-job', authenticateToken,async (req, res) => {
     try {
         const { job_id, job_name, location, skills, date,postedBy } = req.body;
 

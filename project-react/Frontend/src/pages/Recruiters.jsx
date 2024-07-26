@@ -48,7 +48,7 @@ const Recruiters = () => {
                 <h1 className="text-6xl font-bold">{recruiter.co_name}</h1>
                 <h3 className="text-3xl font-bold">Type of company {recruiter.type}</h3>
                 <h3 className="text-3xl font-bold">contact {recruiter.email}</h3>
-                <h3 className="text-3xl font-bold">{recruiter.place}</h3>
+                <h3 className="text-3xl font-bold">in {recruiter.place}</h3>
               </div>
             ))}
           </div>

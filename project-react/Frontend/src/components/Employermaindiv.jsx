@@ -65,13 +65,13 @@ const Employermaindiv = () => {
   return (
    <>
     <div
-        className="flex  bg-gradient-to-r from-gray-700 to-gray-400 text-center w-[75%] m-auto mt-[5%] rounded-2xl h-[540px]">
+        className="flex  bg-gradient-to-r from-blue-700 to-green-400 text-center w-[75%] m-auto mt-[5%] rounded-2xl h-[540px] border-2">
 
         <div
-            className="dash bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg mt-[2%] ml-[10px] h-[500px]">
-            <h2 className="font-sans text-2xl">Welcome <span className='text-3xl text-purple-900 font-bold animate-ping' >{employer.co_name}</span></h2>
+            className="dash bg-gradient-to-r from-green-600 to-blue-400 text-white p-8 rounded-lg mt-[2%] ml-[10px] h-[500px] border-2 border-white">
+            <h2 className="font-sans text-2xl font-bold ">Welcome <span className='text-3xl text-yellow-300 font-bold animate-pulse' >{employer.co_name}</span></h2>
             <hr className="my-4 border-t border-blue-500"/>
-            <Link to="#adjob" className="block mt-[-75px] ">
+            <Link to="" className="block mt-[-75px] ">
                 <input type="submit" value="Add a Job" onClick={handelAddjob}
                     className="bg-purple-900 text-white py-2  rounded cursor-pointer w-[90%] mt-[50%] hover:bg-purple-600 transition ease-in-out delay-4s"/>
             </Link>
@@ -79,7 +79,7 @@ const Employermaindiv = () => {
                 <input type="submit" value="View jobs" onClick={viewJobs}
                     className="bg-purple-900 text-white py-2  rounded cursor-pointer w-[90%]  hover:bg-purple-600 transition ease-in-out delay-4s"/>
             </Link>
-            <Link to="#vwapp" className="block my-2">
+            <Link to="#" className="block my-2">
                 <input type="submit" value="View Applications" onClick={handleApplication}
                     className="bg-purple-900 text-white py-2 px-4 rounded cursor-pointer w-[90%] hover:bg-purple-600 transition ease-in-out delay-1s"/>
             </Link>

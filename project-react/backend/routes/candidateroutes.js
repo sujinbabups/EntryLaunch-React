@@ -13,7 +13,19 @@ const authenticateToken = require('../middleware/tokenAuth')
 
 // Getting the jobs to the candidate profile
 
-router.get('/get-jobs', async (req, res) => {
+router.get('/get-jobs',authenticateToken, async (req, res) => {
+  try {
+    const jobs = await jobslist.find();
+    res.status(200).json(jobs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// getting jobs to home page 
+
+router.get('/get-jobsss', async (req, res) => {
   try {
     const jobs = await jobslist.find();
     res.status(200).json(jobs);
@@ -62,7 +74,7 @@ router.get('/job-details', authenticateToken, async (req, res) => {
 
 
 // Apply job 
-router.post('/apply-job', async (req, res) => {
+router.post('/apply-job', authenticateToken,async (req, res) => {
   try {
     const newApplication = new applyJob({
       job_id: req.body.job_id,
@@ -87,7 +99,7 @@ router.post('/apply-job', async (req, res) => {
 // Updating the user profile
 
 
-router.put('/update-user', async (req, res) => {
+router.put('/update-user',authenticateToken, async (req, res) => {
   try {
     const { email, dob, course, passingyr, grade, skills, place } = req.body;
 

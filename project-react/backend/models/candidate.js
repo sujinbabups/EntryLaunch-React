@@ -13,7 +13,7 @@ const demo=new Schema({
     place:{type:String},
     passingyr:{type:String},
     grade:{type:String},
-    appliedJobs: [{ type: Schema.Types.ObjectId, ref: 'job-list' }]
+    appliedJobs: { type:String, }
 
 
 })

@@ -65,7 +65,7 @@ const EmployerviewJobs = () => {
   };
 
   return (
-    <div className="myappl bg-gradient-to-r from-blue-300 to-blue-700 text-white p-8 rounded-lg relative top-[5%] ml-8 h-[500px] w-[65%] hidden-section overflow-y-scroll" id="appli">
+    <div className="myappl bg-gradient-to-r from-green-600 to-blue-400 text-white p-8 rounded-2xl relative top-[5%] ml-8 h-[500px] w-[77%]  overflow-y-scroll border-2 border-white" id="appli">
       <h3 className="text-3xl font-bold mb-6">Your Posted Jobs</h3>
       <table className="w-[80%] text-black mx-auto relative top-[20%]">
         <thead>

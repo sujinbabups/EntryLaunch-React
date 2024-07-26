@@ -41,7 +41,7 @@ const Employerlogin = ({ show, handleClose }) => {
 
   return (
  <>
-     <div id="emplog" className="fixed top-[200px] right-[10px] bg-white w-1/4 p-6 rounded-lg shadow-lg ">
+     <div id="emplog" className="fixed top-[200px] right-[10px] bg-gray-700 p-6 rounded-lg shadow-lg  w-[22%]  text-white">
         <a href="#" className="float-right text-4xl mb-4" onClick={handleClose}>&times;</a>
         {/* <a href="#empreg" className="float-right text-blue-600 font-bold mb-4">Register</a> */}
         <h3 className="text-2xl font-medium mb-4">Employer Login</h3>
@@ -49,10 +49,10 @@ const Employerlogin = ({ show, handleClose }) => {
         <form className="mt-6" onSubmit={loginSubmit}>
             <label htmlFor="username" className="block text-lg">Email ID</label>
             <input type="email" name="email" id="emp_uname" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="block w-full h-10 bg-gray-300 rounded-lg text-center text-lg mt-2 mb-4" placeholder="Email ID"/>
+                className="block w-full h-10 bg-black font-mono rounded-lg text-center text-lg mt-2 mb-4" placeholder="Email ID"/>
             <label htmlFor="pass" className="block text-lg">Password</label>
             <input type="password" name="password" id="emp_pass" value={password} onChange={(e) => setPassword(e.target.value)}
-                className="block w-full h-10 bg-gray-300 rounded-lg text-center text-lg mt-2 mb-4" placeholder="**********"/>
+                className="block w-full h-10 bg-black font-mono rounded-lg text-center text-lg mt-2 mb-4" placeholder="**********"/>
             <input type="submit" value="Login" 
                 className="w-full h-10 bg-blue-800 text-white font-bold rounded-lg mt-4 cursor-pointer hover:bg-blue-600"/>
         </form>

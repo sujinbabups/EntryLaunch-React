@@ -4,6 +4,8 @@ import Employerlogin from './Employerlogin';
 import Adminlogin from './Adminlogin';
 import { Link } from 'react-router-dom';
 
+import '../App.css'
+
 const Navbar = () => {
     const [loginType, setLoginType] = useState(null);
 
@@ -32,9 +34,19 @@ const Navbar = () => {
    <>
    <div
         className="flex justify-between items-center bg-gradient-to-t from-gray-200 via-blue-400 to-blue-400 h-24 w-full px-4">
-        <div className="relative left-2">
-            <h3 className="text-4xl font-semibold font-sans animate-pulse">EntryLaunch</h3>
-        </div>
+         <div className="relative left-2">
+      <h3 className="text-4xl font-semibold font-sans text-white">
+        {'EntryLaunch'.split('').map((letter, index) => (
+          <span
+            key={index}
+            className="slide-in1"
+            style={{ animationDelay: `${index * .1}s` }}
+          >
+            {letter}
+          </span>
+        ))}
+      </h3>
+    </div>
         <div className="flex space-x-16 relative left-[-20px] ">
             <ul className="flex space-x-16 cursor-pointer">
                 <li><Link to ="/" className="text-xl text-blue-900 font-bold hover:text-white transition duration-500 ">Home</Link></li>

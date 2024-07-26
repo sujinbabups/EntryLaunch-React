@@ -7,6 +7,7 @@ const appJobs=require('../models/appliedjobs')
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const verifyfyToken =require('../middleware/tokenAuth')
 
 router.post('/admin-login', async (req, res) => {
     const { username, password } = req.body;
@@ -27,7 +28,7 @@ router.post('/admin-login', async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.cookie('AdminAuthToken', token, { httpOnly: true, secure: false }); 
+        res.cookie('AuthToken', token, { httpOnly: true, secure: false }); 
         res.status(200).json({ message: 'Login Success', token });
 
     } catch (error) {
@@ -36,15 +37,17 @@ router.post('/admin-login', async (req, res) => {
     }
 });
 
+
+
 router.get("/logout", (req, res) => {
-    res.clearCookie("AdminAuthToken");
+    res.clearCookie("AuthToken");
     res.status(200).send("Logout successful");
 });
 
 
 // adding employer
 
-router.post('/add-employer', async (req, res) => {
+router.post('/add-employer',verifyfyToken, async (req, res) => {
     try {
         const { Emp_Id, co_name, type, place, email, password } = req.body;
 
@@ -70,7 +73,7 @@ router.post('/add-employer', async (req, res) => {
 });
 // view employer
 
-router.get('/get-employers', async (req, res) => {
+router.get('/get-employers',verifyfyToken, async (req, res) => {
     try {
         const employer = await employerSchema.find();
         res.status(200).json(employer);
@@ -83,7 +86,7 @@ router.get('/get-employers', async (req, res) => {
 
 // getting the selected id to the table
 
-router.get('/employers', async (req, res) => {
+router.get('/employers',verifyfyToken, async (req, res) => {
     try {
         const employers = await employerSchema.find(); // Fetch all employers
         if (employers.length > 0) {
@@ -100,7 +103,7 @@ router.get('/employers', async (req, res) => {
 
 // removeing employer by admin
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id',verifyfyToken,async (req, res) => {
     try {
         const employerID = req.params.id;
         const result = await employerSchema.deleteOne({ Emp_Id: employerID });
@@ -116,18 +119,7 @@ router.delete('/delete/:id', async (req, res) => {
     }
 });
 
-// Getting the number of placement to the admin
 
-router.get('/get-applied-jobs', async (req, res) => {
-    try {
-      // Fetch applied jobs from the database
-      const appliedJobs = await appJobs.find();
-      res.status(200).json(appliedJobs);
-    } catch (error) {
-      console.error('Error fetching applied jobs:', error);
-      res.status(500).json({ message: 'Server error' });
-    }
-  });
 
 
 

@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
-import '../App.css'; // Ensure this file contains the necessary CSS
+import '../App.css'; 
+
 
 const NewlyAddedJobs = () => {
   const [jobs, setJobs] = useState([]);
+
+  const [showMessage, setShowMessage] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Fetch job details from the backend
+
     const fetchJobs = async () => {
       try {
-        const response = await fetch('/api/get-jobs'); // Adjust the URL to your endpoint
+        const response = await fetch('/api/get-jobsss'); 
         if (response.ok) {
           const data = await response.json();
           setJobs(data);
@@ -24,8 +27,15 @@ const NewlyAddedJobs = () => {
     fetchJobs();
   }, []);
 
+  const handleApplyClick = () => {
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000); // Message will disappear after 3 seconds
+  };
+
   return (
-    <div className="relative h-[330px] w-[30%] max-w-3xl p-4 bg-gradient-to-t from-gray-400 to-gray-700 rounded-2xl m-auto mt-[-860px] z-[100]  ">
+    <div className="relative h-[330px] w-[30%] max-w-3xl p-4 bg-gradient-to-t from-gray-400 to-gray-700 rounded-2xl m-auto mt-[-860px]">
       <h3 className="text-3xl font-bold font-serif text-center animated-gradient-text">
         Newly Added Jobs
       </h3>
@@ -40,14 +50,21 @@ const NewlyAddedJobs = () => {
               <h2 className='font-bold'>at {job.location}</h2>
               <h2 className='font-bold'>Apply before <span className='text-green-900'>{job.date}</span></h2>
               <input
-                type="submit"
+                type="button"
                 value="Apply"
                 className="h-10 w-28 bg-purple-500 rounded-xl hover:bg-purple-700 cursor-pointer"
+                onClick={handleApplyClick}
               />
             </div>
           ))}
         </div>
       </div>
+      {showMessage && (
+        <div className="message-animation">
+          Please login to apply
+          
+        </div>
+        )}
     </div>
   );
 };

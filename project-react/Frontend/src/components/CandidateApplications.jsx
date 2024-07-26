@@ -46,9 +46,9 @@ const CandidateApplications = () => {
         id="appli"
       >
         <h3 className="text-3xl font-bold mb-6">Your Applications</h3>
-        <table className="w-[80%] text-black mx-auto relative top-[20%]">
+        <table className="w-[80%] text-black mx-auto relative top-[10%] ">
           <thead>
-            <tr className="bg-purple-500 border-blue-800 text-center text-white h-10">
+            <tr className="bg-gradient-to-r from-green-500 to-blue-800 border-blue-800 text-center text-white h-10">
               <th className="w-[25%]">Job</th>
               <th>Location</th>
               <th>Skills</th>
@@ -61,13 +61,13 @@ const CandidateApplications = () => {
               const jobDetail = jobList.find((list) => list.job_id === job.job_id);
               return (
                 jobDetail && (
-                  <tr key={job.job_id}>
-                    <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{job.job}</td>
-                    <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{jobDetail.location}</td>
-                    <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{jobDetail.skills}</td>
-                    <td className="font-bold bg-white border-2 border-blue-800 text-center h-10">{jobDetail.date}</td>
+                  <tr key={job.job_id} className='bg-gradient-to-r from-green-500 to-blue-800' >
+                    <td className="font-bold bg-gray-300 border-2 border-blue-800 text-center h-10">{job.job}</td>
+                    <td className="font-bold bg-gray-300 border-2 border-blue-800 text-center h-10">{jobDetail.location}</td>
+                    <td className="font-bold bg-gray-300 border-2 border-blue-800 text-center h-10">{jobDetail.skills}</td>
+                    <td className="font-bold bg-gray-300 border-2 border-blue-800 text-center h-10">{jobDetail.date}</td>
                     <td
-                      className={`font-bold bg-white border-2 border-blue-800 text-center h-10 ${
+                      className={`font-bold bg-gray-300 border-2 border-blue-800 text-center h-10 ${
                         job.action === 'selected' ? 'text-green-600' : 'text-red-600'
                       }`}
                     >

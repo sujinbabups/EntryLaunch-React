@@ -11,7 +11,7 @@ const demo=new Schema({
     place:{type:String,},
     // description:{type:String,required:true},
     action:{type:String,required:true},
-    postedBy:{ type: String, ref: 'job-list', required: true},
+    postedBy:{ type: String, required: true},
     ldate:{type:String,ref:'job-list'},
     
 
